@@ -24,13 +24,7 @@ function update_member_profit(key,status) {
     //$("#member_profit").text(String(status));
 }
 
-function writeUserData(userId, name, email, imageUrl) {
-  firebase.database().ref('users/' + userId).set({
-    username: name,
-    email: email,
-    profile_picture : imageUrl
-  });
-}
+
 
 
 $( document ).ready(function() {
