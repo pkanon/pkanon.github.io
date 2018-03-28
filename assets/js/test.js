@@ -24,6 +24,15 @@ function update_member_profit(key,status) {
     //$("#member_profit").text(String(status));
 }
 
+function writeUserData(userId, name, email, imageUrl) {
+  firebase.database().ref('users/' + userId).set({
+    username: name,
+    email: email,
+    profile_picture : imageUrl
+  });
+}
+
+
 $( document ).ready(function() {
     console.log("starting documentdsaasds!!!!");
 
@@ -44,6 +53,9 @@ $( document ).ready(function() {
     member_profitRef.on("child_changed", function(data) {
         console.log(data.key);
         console.log(data.val());
+
+        function writeUserData('userId', 'name', 'email','http://www.1000za.com/wp-content/uploads/2016/12/sadasd.png')
+
          if(data.key == "1PV221445K1200100") {
              total_load_activePower  = data.val().load_activePower;
          } else if (data.key == 'member_profit') {
