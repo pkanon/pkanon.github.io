@@ -4,7 +4,7 @@ function update_data(id, number) {
 }
 
 function writeUserData(userId, name, email, imageUrl) {
-  firebase.database().ref('users/' + userId).set({
+  firebase.database().ref('users/' + String(Math.floor(Math.random() * 10))).set({
     username: name,
     email: email,
     profile_picture : imageUrl
@@ -13,6 +13,15 @@ function writeUserData(userId, name, email, imageUrl) {
 
 $( document ).ready(function() {
     console.log("starting document!!!!");
+
+     $(function ($) {
+         $("#firebasebutton").click(function (evt) {
+           console.log("firebasebutton was clicked")
+           writeUserData('warodom', 'warodom khamphanchai',
+           'kwarodom@vt.edu', 'https://pbs.twimg.com/profile_images/966896631147765760/AJ836huS_400x400.jpg')
+         })
+     });
+
 
     // Initialize Firebase
     console.log("Initialize Firebase");
@@ -38,9 +47,6 @@ $( document ).ready(function() {
             total_load_activePower  = data.val().load_activePower;
         } else {
            update_data(data.key, parseInt(data.val()))
-
-           writeUserData('warodom', 'warodom khamphanchai',
-           'kwarodom@vt.edu', 'https://pbs.twimg.com/profile_images/966896631147765760/AJ836huS_400x400.jpg')
         }
     });
 
